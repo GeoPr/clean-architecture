@@ -7,8 +7,13 @@ export interface ICartItem<T extends Record<string, unknown> = Record<string, un
   payload: T;
 }
 
-export interface ICartRepository {
+export interface ICartDataProvider {
   get(): Promise<Cart>;
   save(cart: Cart): Promise<Cart>;
+}
+
+export interface ICartRepository {
+  getItems(): Promise<ICartItem[]>;
+  saveItems(items: ICartItem[]): Promise<Cart>;
 }
 

@@ -1,14 +1,14 @@
-import { Cart } from "../../../layers/domain/cart";
+import { CartRepository, CartDataProvider } from '../../../layers/domain/cart';
+import { NotificationsService } from '../../../layers/application/notifications';
 
-import { CartRepository } from '../../../layers/application/cart';
+import { Cart, useCartViewModel } from './components/cart';
 
-import { Cart as CartComponent, useCartViewModel } from './components/cart';
-
-const repo = new CartRepository(Cart.createEmpty());
+const repo = new CartRepository(new CartDataProvider());
+const notificationsService = new NotificationsService();
 
 function App() {
-  const vm = useCartViewModel(repo);
-  return <CartComponent vm={vm} /> ;
+  const vm = useCartViewModel(repo, notificationsService);
+  return <Cart vm={vm} /> ;
 }
 
 export default App
