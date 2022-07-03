@@ -17,7 +17,7 @@ export class AddToCartUseCase {
 
       return cart;
     } catch {
-      this.notificationsService.notifySuccess('error');
+      this.notificationsService.notifyError('error');
     }
   }
 }
